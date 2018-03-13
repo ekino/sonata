@@ -1,0 +1,17 @@
+/* immutable tabs form type */
+.immutable-tabs-widget .nav-tabs li a {
+    color: #444;
+}
+.immutable-tabs-widget .nav-tabs li a .has-errors {
+    color: red;
+}
+.immutable-tabs-widget .nav-tabs li {
+    margin-bottom: 2px;
+    border-radius: 7px 7px 0 0;
+    border: 1px solid #f0ebeb;
+    border-bottom: 1px solid #f0ebeb;
+    border-bottom: 1px solid #bcb7b7;
+}
+.immutable-tabs-widget .nav-tabs li .active{
+    border-top: 3px;
+}
