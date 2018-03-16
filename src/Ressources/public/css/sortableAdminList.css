@@ -1,0 +1,12 @@
+/* sortable table element*/
+.sortable-table tr {
+    cursor: move;
+}
+
+/* draggable elements */
+.draggable--over {
+    opacity: 0.33;
+}
+.draggable-mirror {
+    border: solid 1px #3c8dbc;
+}
