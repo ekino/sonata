@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+    <file source-language="fr" datatype="plaintext" original="">
+        <body>
+            <trans-unit id="internal_external_link.error">
+                <source>internal_external_link.error</source>
+                <target>Le champ lien n'est pas correctement rempli : {{ error }}</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
+

@@ -1,4 +1,4 @@
-{% extends 'SonataSonataHelpersBundle:Form:form_admin_fields.html.twig' %}
+{% extends 'SonataAdminBundle:Form:form_admin_fields.html.twig' %}
 
 {% block sonata_immutable_tabs_type_widget %}
     {# Use js from immutableTabsType.js #}
@@ -33,3 +33,32 @@
         </div>
     {% endspaceless %}
 {% endblock sonata_immutable_tabs_type_widget %}
+
+{% block sonata_type_internal_external_link_type_widget %}
+    {% set widgetClass = '' %}
+    <div class="LinkWidget">
+        <div class="LinkWidget_Preview">
+            {% if form.vars.value is not null %}
+                {% set widgetClass = ' LinkWidget_Form-hidden' %}
+                {% if form.vars.value.linkType == 'page' and form.vars.value.page is not null %}
+                    <i class="fa fa-file-text-o"></i>
+                    Interne :
+                    <code class="LinkWidget_PagePath">{{ form.vars.value.page.url }}</code>
+                    <a class="LinkWidget_ToggleLink btn btn-xs btn-default"><i class="fa fa-pencil-square-o"></i> {{ 'link_edit'|trans({}, 'SonataAdminBundle') }}</a>
+                {% elseif form.vars.value.linkType == 'link' %}
+                    <i class="fa fa-link"></i>
+                    Externe :
+                    <code>{{ form.vars.value.link }}</code>
+                    <a class="LinkWidget_ToggleLink btn btn-xs btn-default"><i class="fa fa-pencil-square-o"></i> {{ 'link_edit'|trans({}, 'SonataAdminBundle') }}</a>
+                {% else %}
+                    <i class="fa fa-link"></i>
+                    Sans lien :
+                    <a class="LinkWidget_ToggleLink btn btn-xs btn-default"><i class="fa fa-pencil-square-o"></i> {{ 'link_edit'|trans({}, 'SonataAdminBundle') }}</a>
+                {% endif %}
+            {% endif %}
+        </div>
+        <div class="LinkWidget_Form{{ widgetClass }}">
+            {{ block('form_widget') }}
+        </div>
+    </div>
+{% endblock %}
