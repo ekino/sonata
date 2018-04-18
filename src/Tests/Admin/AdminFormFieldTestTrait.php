@@ -11,7 +11,7 @@
  *
  */
 
-namespace SonataHelpers\Tests\Admin;
+namespace Sonata\HelpersBundle\Tests\Admin;
 
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Form\FormMapper;

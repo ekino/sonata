@@ -21,10 +21,10 @@
     "symfony/phpunit-bridge": "^4.0"
   },
   "autoload": {
-    "psr-4": { "Sonata\\SonataHelpersBundle\\": "src/" }
+    "psr-4": { "Sonata\\HelpersBundle\\": "src/" }
   },
   "autoload-dev": {
-    "psr-4": { "Sonata\\SonataHelpersBundle\\Tests\\": "tests/" }
+    "psr-4": { "Sonata\\HelpersBundle\\Tests\\": "tests/" }
   },
   "config": {
     "sort-packages": true

@@ -11,9 +11,9 @@
  *
  */
 
-namespace SonataHelpers\Tests;
+namespace Sonata\HelpersBundle\Tests;
 
-use SonataHelpers\Tests\Common\TranslationTestHelper;
+use Sonata\HelpersBundle\Tests\Common\TranslationTestHelper;
 use Symfony\Component\Translation\TranslatorInterface;
 
 /**

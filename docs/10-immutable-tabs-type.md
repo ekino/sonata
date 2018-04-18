@@ -12,17 +12,17 @@ To get tabs into a block of page or admin form.
 
 It extends the `Sonata\CoreBundle\Form\Type\ImmutableArrayType`
 
-And use a specific widget defined in `src/AdminBundle/Ressources/Views/form_admin_fields.html.twig` so you must add it to your admin sonata config
+And use a specific widget defined in `SonataHelpersBundle/Ressources/views/From/form_admin_fields.html.twig` so you must add it to your admin sonata config
 
 ```
 sonata_admin:
     admin_services:
-        canalplus.awaken.admin.item:
+        app.admin.item:
             templates:
-                form: ['CanalPlusAwakenAdminBundle:Form:form_admin_fields.html.twig']
+                form: ['SonataHelpersBundle:Form:form_admin_fields.html.twig']
 ```
 
-Don't forget to add the css `src/AdminBundle/Ressources/public/css/immutableTabsType.css` to have cute tabs
+Don't forget to add the css `SonataHelpersBundle/Ressources/public/css/immutableTabsType.css` to have cute tabs
 
 An array of tabs must be set
  key :   key of tab that will be used to record value in database
@@ -98,7 +98,7 @@ data are a json with the key of the immutableTabsType then the key of tabs as su
 
 ### Exemple of data
 
-````
+```
 {
   "settings": {
     "fr": {
@@ -112,4 +112,4 @@ data are a json with the key of the immutableTabsType then the key of tabs as su
     }
   }
 }
-````
+```
