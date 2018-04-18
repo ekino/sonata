@@ -11,7 +11,7 @@
  *
  */
 
-namespace SonataHelpers\Tests\FragmentService;
+namespace Sonata\HelpersBundle\Tests\FragmentService;
 
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Form\FormMapper;

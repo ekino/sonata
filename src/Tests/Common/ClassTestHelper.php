@@ -11,7 +11,7 @@
  *
  */
 
-namespace SonataHelpers\Tests\Common;
+namespace Sonata\HelpersBundle\Tests\Common;
 
 /**
  * Class ClassTestHelper.

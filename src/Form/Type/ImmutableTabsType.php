@@ -11,7 +11,7 @@
  *
  */
 
-namespace Sonata\SonataHelpersBundle\Form\Type;
+namespace Sonata\HelpersBundle\Form\Type;
 
 use Sonata\CoreBundle\Form\Type\ImmutableArrayType;
 use Symfony\Component\Form\FormBuilderInterface;

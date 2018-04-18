@@ -11,10 +11,10 @@
  *
  */
 
-namespace Sonata\SonataHelpersBundle\Tests\Form\Type;
+namespace Sonata\HelpersBundle\Tests\Form\Type;
 
 use Sonata\CoreBundle\Form\Type\ImmutableArrayType;
-use Sonata\SonataHelpersBundle\Form\Type\ImmutableTabsType;
+use Sonata\HelpersBundle\Form\Type\ImmutableTabsType;
 use Symfony\Component\Form\FormBuilder;
 use Symfony\Component\Form\Test\TypeTestCase;
 

@@ -11,7 +11,7 @@
  *
  */
 
-namespace SonataHelpers\Tests\Admin;
+namespace Sonata\HelpersBundle\Tests\Admin;
 
 use Doctrine\Common\Inflector\Inflector;
 use Knp\Menu\FactoryInterface;
