@@ -1,21 +1,20 @@
 <?php
 
 /*
+ * This file is part of the ekino/sonata project.
  *
- * This file is part of the Sonata for Ekino project.
- *
- * (c) 2018 - Ekino
+ * (c) Ekino
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- *
  */
 
 namespace Sonata\HelpersBundle\Tests\Form\Type;
 
+use PHPUnit\Framework\MockObject\MockObject;
 use Sonata\CoreBundle\Form\Type\ImmutableArrayType;
 use Sonata\HelpersBundle\Form\Type\ImmutableTabsType;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Test\TypeTestCase;
 
 /**
@@ -30,7 +29,8 @@ class ImmutableTabsTypeTest extends TypeTestCase
      */
     public function testBuildForm()
     {
-        $formBuilder = $this->getMockBuilder(FormBuilder::class)->disableOriginalConstructor()->getMock();
+        /** @var FormBuilderInterface|MockObject $formBuilder */
+        $formBuilder = $this->createMock(FormBuilderInterface::class);
         $formBuilder
             ->expects($this->once())
             ->method('add')

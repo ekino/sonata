@@ -1,24 +1,34 @@
-.PHONY: cs-check cs-fix help lint lint-composer lint-yaml test
+.PHONY: app-composer-validate app-cs-check app-cs-fix app-install app-lint app-lint-composer app-lint-yaml app-security-check \
+app-static-analysis app-test app-test-with-code-coverage ci
 
 default: help
 
 help:
 	@grep -E '^[a-zA-Z_-]+:.*?##.*$$' $(MAKEFILE_LIST) | sort | awk '{split($$0, a, ":"); printf "\033[36m%-30s\033[0m %-30s %s\n", a[1], a[2], a[3]}'
 
-cs-check: ## to show files that need to be fixed
-	php-cs-fixer fix --ansi --verbose --diff --dry-run
-
-cs-fix: ## to fix files that need to be fixed
-	php-cs-fixer fix --verbose
-
-lint: ## to lint php, yaml & composer
-	make lint-composer lint-composer cs-check lint-yaml
-
-lint-composer: ## to validate composer.lock
+app-composer-validate: ## to validate composer config
 	composer validate
 
-lint-yaml: ## to lint yaml
-	find . -name '*.yml' -not -path './vendor/*' -not -path './src/Resources/public/vendor/*' | xargs yaml-lint
+app-cs-check: ## to show files that need to be fixed
+	vendor/bin/php-cs-fixer fix --dry-run --diff --verbose
 
-test: ## to run unit tests
-	phpunit -c phpunit.xml.dist --coverage-clover build/logs/clover.xml
+app-cs-fix: ## to fix files that need to be fixed
+	vendor/bin/php-cs-fixer fix --verbose
+
+app-install: ## to install app
+	composer install --prefer-dist
+
+app-security-check: ## to check if any security issues in the PHP dependencies
+	vendor/bin/security-checker security:check
+
+app-static-analysis: ## to run static analysis
+	php -dmemory_limit=-1 vendor/bin/phpstan analyze src tests -l 5
+
+app-test: ## to run unit tests
+	vendor/bin/phpunit
+
+app-test-with-code-coverage: ## to run unit tests with code-coverage
+	vendor/bin/phpunit --coverage-text --coverage-clover=build/phpunit/clover.xml --log-junit=build/phpunit/junit.xml --coverage-html=build/phpunit/html --colors=never
+
+ci: ## to run checks during ci
+	make app-composer-validate app-cs-check app-security-check app-static-analysis app-test

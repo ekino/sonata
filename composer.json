@@ -3,6 +3,8 @@
   "description": "Sonata Helpers by Ekino",
   "type": "symfony-bundle",
   "license": "MIT",
+  "keywords": ["sonata", "helpers", "admin"],
+  "homepage": "https://github.com/ekino/sonata",
   "authors": [
     {
       "name": "Ekino PHP Team",
@@ -13,18 +15,25 @@
     "php": "^7.1",
     "sonata-project/admin-bundle": "^3.1",
     "sonata-project/doctrine-orm-admin-bundle": "^3.0",
-    "symfony/framework-bundle": "^3.0 || ^4.0"
+    "symfony/framework-bundle": "^3.3 || ^4.0"
   },
   "require-dev": {
-    "friendsofphp/php-cs-fixer": "^2.0",
-    "phpunit/phpunit": "^6.0",
-    "symfony/phpunit-bridge": "^4.0"
+    "ekino/phpstan-banned-code":   "^0.1",
+    "friendsofphp/php-cs-fixer":   "^2.12",
+    "phpstan/phpstan-phpunit":     "^0.11",
+    "phpunit/phpunit":             "^7.2",
+    "sensiolabs/security-checker": "^5.0",
+    "symfony/phpunit-bridge":      "^3.3 || ^4.0"
   },
   "autoload": {
-    "psr-4": { "Sonata\\HelpersBundle\\": "src/" }
+    "psr-4": {
+      "Sonata\\HelpersBundle\\": "src"
+    }
   },
   "autoload-dev": {
-    "psr-4": { "Sonata\\HelpersBundle\\Tests\\": "tests/" }
+    "psr-4": {
+      "Sonata\\HelpersBundle\\Tests\\": "tests"
+    }
   },
   "config": {
     "sort-packages": true
