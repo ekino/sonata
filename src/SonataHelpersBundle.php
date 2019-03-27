@@ -1,14 +1,12 @@
 <?php
 
 /*
+ * This file is part of the ekino/sonata project.
  *
- * This file is part of the Sonata for Ekino project.
- *
- * (c) 2018 - Ekino
+ * (c) Ekino
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- *
  */
 
 namespace Sonata\HelpersBundle;
