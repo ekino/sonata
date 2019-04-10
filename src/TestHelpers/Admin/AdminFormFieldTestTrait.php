@@ -1,17 +1,15 @@
 <?php
 
 /*
+ * This file is part of the ekino/sonata project.
  *
- * This file is part of the Sonata for Ekino project.
- *
- * (c) 2018 - Ekino
+ * (c) Ekino
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- *
  */
 
-namespace Sonata\HelpersBundle\Tests\Admin;
+namespace Sonata\HelpersBundle\TestHelpers\Admin;
 
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -79,9 +77,9 @@ trait AdminFormFieldTestTrait
      */
     protected function expectInOrder($formMapper, array $fields)
     {
-        $admin = $formMapper->getAdmin();
-        $reflection = new \ReflectionClass(get_class($admin));
-        $method = $reflection->getMethod('configureFormFields');
+        $admin      = $formMapper->getAdmin();
+        $reflection = new \ReflectionClass(\get_class($admin));
+        $method     = $reflection->getMethod('configureFormFields');
         $method->setAccessible(true);
 
         $method->invokeArgs($admin, [$formMapper]);
