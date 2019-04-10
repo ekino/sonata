@@ -1,1 +1,2 @@
 - Add new form type : ImmutableTabsType
+- Add new feature : sortable admin list
