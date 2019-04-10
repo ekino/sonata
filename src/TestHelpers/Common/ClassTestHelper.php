@@ -1,17 +1,15 @@
 <?php
 
 /*
+ * This file is part of the ekino/sonata project.
  *
- * This file is part of the Sonata for Ekino project.
- *
- * (c) 2018 - Ekino
+ * (c) Ekino
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- *
  */
 
-namespace Sonata\HelpersBundle\Tests\Common;
+namespace Sonata\HelpersBundle\TestHelpers\Common;
 
 /**
  * Class ClassTestHelper.
@@ -29,8 +27,8 @@ class ClassTestHelper
      */
     public static function getInstanceWithId($class, $id, $propertyName = 'id')
     {
-        $item = new $class();
-        $reflection = new \ReflectionClass($item);
+        $item               = new $class();
+        $reflection         = new \ReflectionClass($item);
         $reflectionProperty = $reflection->getProperty($propertyName);
         $reflectionProperty->setAccessible(true);
         $reflectionProperty->setValue($item, $id);

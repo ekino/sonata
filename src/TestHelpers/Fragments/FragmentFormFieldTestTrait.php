@@ -1,17 +1,15 @@
 <?php
 
 /*
+ * This file is part of the ekino/sonata project.
  *
- * This file is part of the Sonata for Ekino project.
- *
- * (c) 2018 - Ekino
+ * (c) Ekino
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
- *
  */
 
-namespace Sonata\HelpersBundle\Tests\FragmentService;
+namespace Sonata\HelpersBundle\TestHelpers\FragmentService;
 
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Form\FormMapper;
@@ -44,7 +42,7 @@ trait FragmentFormFieldTestTrait
          * @var FormBuilderInterface|\PHPUnit_Framework_MockObject_MockObject $form
          */
         $formBuilder = $this->createMock(FormBuilderInterface::class);
-        $fragment = $fragment ?: new Fragment();
+        $fragment    = $fragment ?: new Fragment();
 
         $formBuilder->expects($this->any())->method('get')->will($this->returnValue($formBuilder));
 
@@ -61,7 +59,7 @@ trait FragmentFormFieldTestTrait
             'settings',
             ImmutableArrayType::class,
             $this->callback(function ($item) use ($fields) {
-                $valid = is_array($item) && array_key_exists('keys', $item);
+                $valid = \is_array($item) && \array_key_exists('keys', $item);
 
                 foreach ($fields as $index => $field) {
                     $valid = $valid && isset($item['keys'][$index][0]) && $item['keys'][$index][0] === $field[0]
