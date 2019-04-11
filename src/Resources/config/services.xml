@@ -1,0 +1,36 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="sonata_helpers.private.cdn.server" class="Sonata\MediaBundle\CDN\Server" public="false">
+            <argument />
+        </service>
+
+        <service id="sonata_helpers.private.file_system" class="Gaufrette\Filesystem" public="false">
+            <argument type="service" id="sonata_helpers.private.adapter.local" />
+        </service>
+
+        <service id="sonata_helpers.private.adapter.local" class="Sonata\MediaBundle\Filesystem\Local" public="false">
+            <argument />
+            <argument>true</argument>
+            <argument>0755</argument>
+        </service>
+
+        <service id="sonata_helpers.private.provider.file" class="Sonata\MediaBundle\Provider\FileProvider" public="false">
+            <argument>sonata_helpers.private.provider.file</argument>
+            <argument type="service" id="sonata_helpers.private.file_system" />
+            <argument type="service" id="sonata_helpers.private.cdn.server" />
+            <argument type="service" id="sonata.media.generator.default" />
+            <argument type="service" id="sonata.media.thumbnail.format" />
+            <argument />
+            <argument />
+            <argument type="service" id="sonata.media.metadata.proxy" />
+
+            <tag name="sonata.media.provider" />
+        </service>
+    </services>
+
+</container>
