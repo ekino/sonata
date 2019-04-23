@@ -45,11 +45,12 @@ class SonataHelpersExtension extends Extension implements PrependExtensionInterf
         $config            = $container->getExtensionConfig($this->getAlias())[0];
         $sonataMediaConfig = $container->getExtensionConfig('sonata_media')[0];
 
-        if (empty($config['sonata_media_private_file_provider']['allowed_extensions'])) {
-            $config['sonata_media_private_file_provider']['allowed_extensions'] = $sonataMediaConfig['providers']['file']['allowed_extensions'];
-        }
-        if (empty($config['sonata_media_private_file_provider']['allowed_mime_types'])) {
-            $config['sonata_media_private_file_provider']['allowed_mime_types'] = $sonataMediaConfig['providers']['file']['allowed_mime_types'];
+        foreach (['allowed_extensions', 'allowed_mime_types'] as $key) {
+            if (!empty($config['sonata_media_private_file_provider'][$key])) {
+                continue;
+            }
+
+            $config['sonata_media_private_file_provider'][$key] = $sonataMediaConfig['providers']['file'][$key] ?? [];
         }
 
         $container->prependExtensionConfig('sonata_helpers', $config);

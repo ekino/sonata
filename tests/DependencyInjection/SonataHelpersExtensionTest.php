@@ -74,8 +74,13 @@ class SonataHelpersExtensionTest extends TestCase
 
     /**
      * Assert prepend sonata helpers configuration with sonata media one.
+     *
+     * @dataProvider prependDataProvider
+     *
+     * @param array $sonataMediaConfig
+     * @param array $expected
      */
-    public function testPrepend(): void
+    public function testPrepend(array $sonataMediaConfig, array $expected): void
     {
         $container = $this->createPartialMock(ContainerBuilder::class, ['getExtensionConfig', 'prependExtensionConfig']);
 
@@ -84,19 +89,39 @@ class SonataHelpersExtensionTest extends TestCase
             ->willReturn([[]]);
         $container->expects($this->at(1))->method('getExtensionConfig')
             ->with('sonata_media')
-            ->willReturn([['providers' => [
+            ->willReturn([$sonataMediaConfig]);
+        $container->expects($this->once())->method('prependExtensionConfig')
+            ->with('sonata_helpers', $expected);
+
+        $this->extension->prepend($container);
+    }
+
+    /**
+     * @return \Generator
+     */
+    public function prependDataProvider(): \Generator
+    {
+        yield 'With providers' => [
+            ['providers' => [
                 'file' => [
                     'allowed_extensions' => ['foo'],
                     'allowed_mime_types' => ['bar'],
                 ]
-            ]]]);
-        $container->expects($this->once())->method('prependExtensionConfig')
-            ->with('sonata_helpers', ['sonata_media_private_file_provider' => [
+            ]],
+            ['sonata_media_private_file_provider' => [
                 'allowed_extensions' => ['foo'],
                 'allowed_mime_types' => ['bar'],
-            ]]);
-
-        $this->extension->prepend($container);
+            ]]
+        ];
+        yield 'Without providers' => [
+            [],
+            [
+                'sonata_media_private_file_provider' => [
+                    'allowed_extensions' => [],
+                    'allowed_mime_types' => [],
+                ]
+            ]
+        ];
     }
 
     /**
