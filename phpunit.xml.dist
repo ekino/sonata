@@ -23,4 +23,3 @@
         <log type="coverage-html" target="build/phpunit/html"/>
     </logging>
 </phpunit>
-

@@ -21,36 +21,19 @@ EOF;
 return PhpCsFixer\Config::create()
     ->setRiskyAllowed(true)
     ->setRules([
-        'array_indentation' => true,
-        'array_syntax' => ['syntax' => 'short'],
+        '@Symfony' => true,
         'binary_operator_spaces' => ['align_double_arrow' => true, 'align_equals' => true],
+        'array_syntax' => array('syntax' => 'short'),
         'blank_line_after_namespace' => true,
-        'blank_line_after_opening_tag' => true,
-        'declare_strict_types' => true,
-        'header_comment' => ['header' => $header],
-        'indentation_type' => true,
-        'linebreak_after_opening_tag' => true,
+        'header_comment' => array('header' => $header),
         'lowercase_constants' => true,
         'lowercase_keywords' => true,
         'method_separation' => true,
-        'native_function_invocation' => ['include' => ['@compiler_optimized']],
-        'no_alias_functions' => true,
         'no_closing_tag' => true,
         'no_extra_consecutive_blank_lines' => [
-            'tokens' => [
-                'break',
-                'continue',
-                'curly_brace_block',
-                'extra',
-                'parenthesis_brace_block',
-                'return',
-                'square_brace_block',
-                'throw',
-                'use',
-            ],
+            'tokens' => ['break', 'continue', 'extra', 'return', 'throw', 'use', 'parenthesis_brace_block', 'square_brace_block', 'curly_brace_block']
         ],
         'no_short_echo_tag' => true,
-        'no_unused_imports' => true,
         'no_useless_else' => true,
         'no_useless_return' => true,
         'ordered_imports' => true,
@@ -62,6 +45,6 @@ return PhpCsFixer\Config::create()
     ->setUsingCache(true)
     ->setFinder(
         PhpCsFixer\Finder::create()
-            ->in(__DIR__)
+            ->in(['src', 'tests'])
     )
 ;

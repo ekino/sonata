@@ -25,10 +25,10 @@ sonata_admin:
 Don't forget to add the css `SonataHelpersBundle/Ressources/public/css/immutableTabsType.css` to have cute tabs
 
 An array of tabs must be set
- key :   key of tab that will be used to record value in database
- value : label of tab that will displayed
+ key :   key of the tab that will be used to record value in the database
+ value : label of the tab that will be displayed
 
-This array must be send in the options array with the key 'tabs'
+This array must be set in the options array with the key 'tabs'
 
 ### Example of page block with an immutableTabsType
 

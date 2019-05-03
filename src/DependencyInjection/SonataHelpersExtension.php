@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\HelpersBundle\DependencyInjection;
 
+use Sonata\HelpersBundle\Block\BlockFilter\BlockFilter;
 use Symfony\Component\Config\FileLocator;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Extension\PrependExtensionInterface;
@@ -22,7 +23,7 @@ use Symfony\Component\HttpKernel\DependencyInjection\Extension;
 /**
  * This is the class that loads and manages your bundle configuration.
  *
- * @link http://symfony.com/doc/current/cookbook/bundles/extension.html
+ * @see http://symfony.com/doc/current/cookbook/bundles/extension.html
  */
 class SonataHelpersExtension extends Extension implements PrependExtensionInterface
 {
@@ -33,10 +34,11 @@ class SonataHelpersExtension extends Extension implements PrependExtensionInterf
     {
         $configuration = new Configuration();
         $config        = $this->processConfiguration($configuration, $configs);
-        $loader        = new XmlFileLoader($container, new FileLocator(__DIR__ . '/../Resources/config'));
+        $loader        = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');
 
         $this->configureSonataMediaPrivateFileProvider($config['sonata_media_private_file_provider'], $container);
+        $this->configureSonataAddBlockDialog($config['compose_container'], $container);
     }
 
     /**
@@ -73,5 +75,25 @@ class SonataHelpersExtension extends Extension implements PrependExtensionInterf
         $container->findDefinition('sonata_helpers.private.provider.file')
             ->replaceArgument(5, $config['allowed_extensions'])
             ->replaceArgument(6, $config['allowed_mime_types']);
+    }
+
+    /**
+     * @param array            $config
+     * @param ContainerBuilder $container
+     */
+    private function configureSonataAddBlockDialog(array $config, ContainerBuilder $container): void
+    {
+        if (!$config['enabled']) {
+            return;
+        }
+
+        $container
+            ->findDefinition(BlockFilter::class)
+            ->replaceArgument(0, $config['categories'])
+            ->replaceArgument(1, $config['block_config']);
+
+        if ($container->hasParameter('sonata.page.admin.page.controller')) {
+            $container->setParameter('sonata.page.admin.page.controller', 'SonataHelpersBundle:PageAdmin');
+        }
     }
 }

@@ -15,12 +15,14 @@ namespace Sonata\HelpersBundle\Tests\DependencyInjection;
 
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
+use Sonata\HelpersBundle\Block\BlockFilter\BlockFilter;
 use Sonata\HelpersBundle\DependencyInjection\SonataHelpersExtension;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Definition;
 
 /**
  * @author Benoit Mazière <benoit.maziere@ekino.com>
+ * @author Christian Kollross <christian.kollross@ekino.com>
  */
 class SonataHelpersExtensionTest extends TestCase
 {
@@ -42,7 +44,9 @@ class SonataHelpersExtensionTest extends TestCase
      */
     public function testSonataMediaConfig(): void
     {
-        $container = $this->createPartialMock(ContainerBuilder::class, ['findDefinition']);
+        $container = $this->createPartialMock(ContainerBuilder::class,
+            ['findDefinition', 'getExtensionConfig', 'hasParameter', 'setParameter']
+        );
 
         $cdnServerDefinition = $this->createMockDefinition();
         $cdnServerDefinition->expects($this->once())->method('replaceArgument')->with(0, 'foo')->willReturnSelf();
@@ -66,12 +70,36 @@ class SonataHelpersExtensionTest extends TestCase
             ->with('sonata_helpers.private.provider.file')
             ->willReturn($privateFileProviderDefinition);
 
-        $this->extension->load([['sonata_media_private_file_provider' => [
-            'url_prefix'         => 'foo',
-            'storage_path'       => 'bar',
-            'allowed_extensions' => ['foz'],
-            'allowed_mime_types' => ['baz'],
-        ]]], $container);
+        $blockFilterDefinition = $this->createMockDefinition();
+        $blockFilterDefinition->expects($this->exactly(2))->method('replaceArgument')
+            ->withConsecutive(
+                [0, ['alpha' => 'bravo']],
+                [1, ['charlie' => ['categories' => [], 'only_pages' => []]]]
+            )->willReturnSelf();
+        $container->expects($this->at(3))->method('findDefinition')
+            ->with(BlockFilter::class)
+            ->willReturn($blockFilterDefinition);
+
+        $container->expects($this->at(4))->method('hasParameter')
+            ->with('sonata.page.admin.page.controller')
+            ->willReturn(true);
+
+        $container->expects($this->at(5))->method('setParameter')
+            ->with('sonata.page.admin.page.controller', 'SonataHelpersBundle:PageAdmin');
+
+        $this->extension->load([[
+            'sonata_media_private_file_provider' => [
+                'url_prefix'         => 'foo',
+                'storage_path'       => 'bar',
+                'allowed_extensions' => ['foz'],
+                'allowed_mime_types' => ['baz'],
+            ],
+            'compose_container' => [
+                'enabled'      => true,
+                'categories'   => ['alpha' => 'bravo'],
+                'block_config' => ['charlie' => []],
+            ],
+        ]], $container);
     }
 
     /**
@@ -108,12 +136,12 @@ class SonataHelpersExtensionTest extends TestCase
                 'file' => [
                     'allowed_extensions' => ['foo'],
                     'allowed_mime_types' => ['bar'],
-                ]
+                ],
             ]],
             ['sonata_media_private_file_provider' => [
                 'allowed_extensions' => ['foo'],
                 'allowed_mime_types' => ['bar'],
-            ]]
+            ]],
         ];
         yield 'Without providers' => [
             [],
@@ -121,8 +149,8 @@ class SonataHelpersExtensionTest extends TestCase
                 'sonata_media_private_file_provider' => [
                     'allowed_extensions' => [],
                     'allowed_mime_types' => [],
-                ]
-            ]
+                ],
+            ],
         ];
     }
 

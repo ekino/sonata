@@ -10,4 +10,6 @@ after the #.
   * Minimum supported version of PHP is 7.1
   * Minimum supported version of Symfony is 3.4
   * Minimum supported version of Sonata is 3.X
-  * feature #6 [Phpunit] Implements tests helpers 
+  * feature #6 [Phpunit] Implements tests helpers
+  * Added (optional) replacement for "Add block" button, showing blocks in a categorized popup
+  * Fixed PHP-CS-Fixer config
