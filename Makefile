@@ -1,5 +1,5 @@
-.PHONY: app-composer-validate app-cs-check app-cs-fix app-install app-lint app-lint-composer app-lint-yaml app-security-check \
-app-static-analysis app-test app-test-with-code-coverage ci
+.PHONY: app-composer-validate app-cs-check app-cs-fix app-install app-security-check app-static-analysis app-test \
+app-test-with-code-coverage ci
 
 default: help
 
