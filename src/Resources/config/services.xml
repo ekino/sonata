@@ -31,6 +31,19 @@
 
             <tag name="sonata.media.provider" />
         </service>
+
+        <service id="Sonata\HelpersBundle\Controller\PageAdminController">
+            <tag name="controller.service_arguments"/>
+            <argument type="service" id="Sonata\HelpersBundle\Block\BlockFilter\BlockFilter" />
+            <argument type="service" id="sonata.page.admin.block" />
+            <argument type="service" id="sonata.block.manager" />
+            <argument type="service" id="sonata.page.template_manager" />
+        </service>
+
+        <service id="Sonata\HelpersBundle\Block\BlockFilter\BlockFilter">
+            <argument />
+            <argument />
+        </service>
     </services>
 
 </container>

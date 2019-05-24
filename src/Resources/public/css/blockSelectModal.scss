@@ -1,0 +1,89 @@
+.BlockSelectModal {
+    &_List {
+        display: flex;
+        flex-wrap: wrap;
+        flex-grow: 1;
+
+        &-hidden {
+            display: none;
+        }
+    }
+
+    &_Body {
+        max-height: 75vh;
+        overflow: auto;
+        display: flex;
+    }
+
+    &_Categories {
+        width: 25%;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        flex-shrink: 0;
+
+        li {
+            line-height: 3rem;
+        }
+
+        &_Link {
+            display: block;
+            padding: 0 1rem;
+
+            &:hover {
+                background: #EEE;
+            }
+
+            &-active {
+                font-weight: bold;
+            }
+        }
+    }
+
+    &_SelectLink {
+        width: 50%;
+        display: flex;
+        white-space: normal;
+        align-content: center;
+        align-self: flex-start;
+        justify-content: center;
+        padding: 1rem;
+        color: #333;
+
+        &:hover {
+            background: #EEE;
+            color: #333;
+
+            i {
+                background: #FFF;
+            }
+        }
+
+        &_Content {
+            flex-grow: 1;
+        }
+
+        &_Title {
+            font-size: 1.6rem;
+            font-weight: 600;
+        }
+
+        &_Description {
+
+        }
+
+        i {
+            width: 8rem;
+            flex-shrink: 0;
+            font-size: 4rem;
+            text-align: center;
+            margin-right: 1rem;
+            height: 8rem;
+            display: flex;
+            justify-content: center;
+            align-content: center;
+            line-height: 8rem;
+            border: 1px solid #CCC;
+        }
+    }
+}

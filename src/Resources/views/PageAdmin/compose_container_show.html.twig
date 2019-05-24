@@ -1,0 +1,82 @@
+{% trans_default_domain 'SonataHelpersBundle' %}
+
+<div class="page-composer__container__view block-view-{{ container.id }}"
+     data-block-id="{{ container.id }}"
+>
+    <h2 class="page-composer__container__view__header">{{ container.name }}</h2>
+
+    <span class="page-composer__container__view__notice">{{ 'notice'|trans({}) }}</span>
+
+    <div class="page-composer__block-type-selector">
+        <select class="page-composer__block-type-selector__select" style="width: auto;">
+            {% for blockServiceId, blockService in blockServices %}
+                <option value="{{ blockServiceId }}">{{ blockService.blockMetadata.title|trans({}, blockService.blockMetadata.domain|default('SonataBlockBundle')) }}</option>
+            {% endfor %}
+        </select>
+        <a class="btn btn-action btn-small page-composer__block-type-selector__confirm"
+           href="{{ admin.generateObjectUrl('sonata.page.admin.block.create', page, {'composer': true}) }}">
+            <i class="fa fa-plus"></i>
+        </a>
+        <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#blockSelectModal">
+            <i class="fa fa-plus-circle"></i>
+            {{ 'admin.page.add_block'|trans }}
+        </button>
+        <div class="modal fade BlockSelectModal" id="blockSelectModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fermer"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">{{ 'admin.page.select_block'|trans }}</h4>
+                    </div>
+                    <div class="modal-body BlockSelectModal_Body">
+                        <ul class="BlockSelectModal_Categories">
+                            <li><a class="BlockSelectModal_Categories_Link BlockSelectModal_Categories_Link-active" href="#" data-category="_all">{{ 'admin.page.all_blocks'|trans }}</a></li>
+                            {% for category, blocks in blocksByCategory %}
+                                <li><a class="BlockSelectModal_Categories_Link" href="#" data-category="{{ category }}">{{ blockCategories[category]|trans }}</a></li>
+                            {% endfor %}
+                        </ul>
+                        <div data-block-category="_all" class="BlockSelectModal_List">
+                            {% for blockServiceId, blockService in blockServices %}
+                                <a class="BlockSelectModal_SelectLink" href="#" data-value="{{ blockServiceId }}" data-dismiss="modal">
+                                    <i class="BlockSelectModal_SelectLink_Image {{ blockService.blockMetadata.option('class') }}"></i>
+                                    <div class="BlockSelectModal_SelectLink_Content">
+                                        <b class="BlockSelectModal_SelectLink_Title">{{ blockService.blockMetadata.title|trans({}, 'SonataBlockBundle') }}</b>
+                                        <div>{{ blockService.blockMetadata.description|trans({}, 'SonataBlockBundle') }}</div>
+                                    </div>
+                                </a>
+                            {% endfor %}
+                        </div>
+                        {% for category, blocks in blocksByCategory %}
+                            <div data-block-category="{{ category }}" class="BlockSelectModal_List BlockSelectModal_List-hidden">
+                                {% for blockServiceId, blockService in blocks %}
+                                    <a class="BlockSelectModal_SelectLink" href="#" data-value="{{ blockServiceId }}" data-dismiss="modal">
+                                        <i class="BlockSelectModal_SelectLink_Image {{ blockService.blockMetadata.option('class') }}"></i>
+                                        <div class="BlockSelectModal_SelectLink_Content">
+                                            <b class="BlockSelectModal_SelectLink_Title">{{ blockService.blockMetadata.title|trans({}, blockService.blockMetadata.domain|default('SonataBlockBundle')) }}</b>
+                                            <div>{{ blockService.blockMetadata.description|trans({}, blockService.blockMetadata.domain|default('SonataBlockBundle')) }}</div>
+                                        </div>
+                                    </a>
+                                {% endfor %}
+                            </div>
+                        {% endfor %}
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">{{ 'generic.cancel'|trans }}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <span class="page-composer__block-type-selector__loader">{{ 'loading'|trans }}</span>
+
+        <small class="page-composer__container__child-count pull-right">
+            {{ 'blocks'|trans }} <span class="badge">{{ container.children|length }}</span>
+        </small>
+    </div>
+
+    <ul class="page-composer__container__children">
+        {% for child in container.children %}
+            {% include '@SonataPage/BlockAdmin/compose_preview.html.twig' %}
+        {% endfor %}
+    </ul>
+</div>

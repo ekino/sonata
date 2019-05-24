@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="en" target-language="fr" datatype="plaintext" original="file.ext">
+        <body>
+            <trans-unit id="admin.page.add_block">
+                <source>admin.page.add_block</source>
+                <target>Ajouter un bloc</target>
+            </trans-unit>
+            <trans-unit id="admin.page.all_blocks">
+                <source>admin.page.all_blocks</source>
+                <target>Tous</target>
+            </trans-unit>
+            <trans-unit id="admin.page.select_block">
+                <source>admin.page.select_block</source>
+                <target>Sélectionner un bloc</target>
+            </trans-unit>
+            <trans-unit id="block.category.default">
+                <source>block.category.default</source>
+                <target>Non catégorisé</target>
+            </trans-unit>
+            <trans-unit id="generic.cancel">
+                <source>generic.cancel</source>
+                <target>Annuler</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
