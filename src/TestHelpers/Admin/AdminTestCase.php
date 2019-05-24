@@ -107,6 +107,7 @@ abstract class AdminTestCase extends \PHPUnit\Framework\TestCase
      * @var string
      */
     protected $dummyAdminId    = 'sonata.admin';
+
     protected $dummyController = 'SonataAdminBundle:CRUD';
 
     /**
