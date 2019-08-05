@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\HelpersBundle\Tests;
 
+use PHPUnit\Framework\MockObject\MockObject;
 use Sonata\HelpersBundle\Tests\Common\TranslationTestHelper;
 use Symfony\Component\Translation\TranslatorInterface;
 
@@ -26,7 +27,7 @@ trait MockBuilderTrait
     /**
      * Create TranslatorInterfaceMock and add a callback method to it.
      *
-     * @return TranslatorInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @return TranslatorInterface|MockObject
      */
     protected function mockTranslator()
     {

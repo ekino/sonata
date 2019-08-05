@@ -14,3 +14,4 @@ after the #.
   * Added (optional) replacement for "Add block" button, showing blocks in a categorized popup
   * Fixed PHP-CS-Fixer config
   * Added integration of a liipMonitor dashboard
+  * Remove deprecation about configuration tree builder without a root node

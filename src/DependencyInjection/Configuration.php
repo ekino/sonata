@@ -28,8 +28,14 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder();
-        $rootNode    = $treeBuilder->root('sonata_helpers');
+        // Keep compatibility with symfony/config < 4.2
+        if (!method_exists(TreeBuilder::class, 'getRootNode')) {
+            $treeBuilder = new TreeBuilder();
+            $rootNode    = $treeBuilder->root('sonata_helpers');
+        } else {
+            $treeBuilder = new TreeBuilder('sonata_helpers');
+            $rootNode    = $treeBuilder->getRootNode();
+        }
 
         $rootNode
             ->children()
