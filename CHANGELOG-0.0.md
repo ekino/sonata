@@ -13,3 +13,4 @@ after the #.
   * feature #6 [Phpunit] Implements tests helpers
   * Added (optional) replacement for "Add block" button, showing blocks in a categorized popup
   * Fixed PHP-CS-Fixer config
+  * Added integration of a liipMonitor dashboard
