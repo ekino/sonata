@@ -1,0 +1,47 @@
+{% trans_default_domain "App" %}
+
+<div class="box">
+    <div class="box-header with-border monitor">
+        <div id="container">
+            <h1 class="box-title">System Health Status</h1>
+            <script type="text/x-handlebars" data-template-name="result-template">
+                {% verbatim %}
+                    {{#if Health.healthController.content.length}}
+                        <table class="table table-bordered table-condensed test-result">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Message</th>
+                                    <th>Repeat</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each Health.healthController.content}}
+                                    {{#view Health.itemRowView contentBinding="this" tagName="tr" classBinding="content.status_name"}}
+                                        <td>
+                                            <i {{bindAttr class="content.icon"}}></i>&nbsp;&nbsp;{{content.checkName}}
+                                        </td>
+                                        <td>{{content.message}}</td>
+                                        <td><button class=".btn" {{action "repeatCheck"}}>GO</button></td>
+                                    {{/view}}
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    {{else}}
+                        <div>
+                            <h4>No Health Checks Registered</h4>
+                            <p>
+                                To register health checks you need to tag your services in the service container definition by using the following tag: <code>liip_monitor.check</code>.
+                            </p>
+                        </div>
+                    {{/if}}
+                {% endverbatim %}
+            </script>
+        </div>
+    </div>
+</div>
+
+{% block javascripts %}
+    {{ urls|raw }}
+    {{ javascripts|raw }}
+{% endblock %}
