@@ -21,12 +21,16 @@
     "symfony/framework-bundle": "^3.4 || ^4.4"
   },
   "require-dev": {
-    "ekino/phpstan-banned-code":   "^0.2",
-    "friendsofphp/php-cs-fixer":   "^2.16",
-    "phpstan/phpstan-phpunit":     "^0.11",
-    "phpunit/phpunit":             "^7.2",
+    "ekino/phpstan-banned-code": "^0.2",
+    "friendsofphp/php-cs-fixer": "^2.16",
+    "lexik/maintenance-bundle": "^2.1",
+    "phpstan/phpstan-phpunit": "^0.11",
+    "phpunit/phpunit": "^7.2",
     "sensiolabs/security-checker": "^5.0",
-    "symfony/phpunit-bridge":      "^5.0.3"
+    "symfony/phpunit-bridge": "^5.0.3"
+  },
+  "suggest": {
+    "lexik/maintenance-bundle": "^2.1"
   },
   "autoload": {
     "psr-4": {

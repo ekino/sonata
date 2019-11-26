@@ -22,6 +22,22 @@
                 <source>generic.cancel</source>
                 <target>Annuler</target>
             </trans-unit>
+            <trans-unit id="lexik_maintenance.success_unlock">
+                <source>lexik_maintenance.success_unlock</source>
+                <target>Le site %siteId% n'est plus en maintenance.</target>
+            </trans-unit>
+            <trans-unit id="lexik_maintenance.not_success_unlock">
+                <source>lexik_maintenance.not_success_unlock</source>
+                <target>Impossible d'effectuer cette action sur le site %siteId%.</target>
+            </trans-unit>
+            <trans-unit id="lexik_maintenance.not_success_lock">
+                <source>lexik_maintenance.not_success_lock</source>
+                <target>Le site %siteId% est déjà en maintenance.</target>
+            </trans-unit>
+            <trans-unit id="lexik_maintenance.success_lock_database">
+                <source>lexik_maintenance.success_lock_database</source>
+                <target>Le site %siteId% est en maintenance via le driver base de données.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>

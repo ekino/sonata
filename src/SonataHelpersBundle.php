@@ -13,6 +13,8 @@ declare(strict_types=1);
 
 namespace Sonata\HelpersBundle;
 
+use Sonata\HelpersBundle\DependencyInjection\Compiler\LexikMaintenanceCompilerPass;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 /**
@@ -22,4 +24,10 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
  */
 class SonataHelpersBundle extends Bundle
 {
+    public function build(ContainerBuilder $container)
+    {
+        parent::build($container);
+
+        $container->addCompilerPass(new LexikMaintenanceCompilerPass());
+    }
 }

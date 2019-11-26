@@ -22,6 +22,22 @@
                 <source>generic.cancel</source>
                 <target>Abbrechen</target>
             </trans-unit>
+            <trans-unit id="lexik_maintenance.success_unlock">
+                <source>lexik_maintenance.success_unlock</source>
+                <target>Die %siteId%-Site befindet sich nicht mehr in der Wartung.</target>
+            </trans-unit>
+            <trans-unit id="lexik_maintenance.not_success_unlock">
+                <source>lexik_maintenance.not_success_unlock</source>
+                <target>Diese Aktion kann auf der %siteId%-Site nicht ausgeführt werden.</target>
+            </trans-unit>
+            <trans-unit id="lexik_maintenance.not_success_lock">
+                <source>lexik_maintenance.not_success_lock</source>
+                <target>Die %siteId%-Site befindet sich bereits in der Wartung.</target>
+            </trans-unit>
+            <trans-unit id="lexik_maintenance.success_lock_database">
+                <source>lexik_maintenance.success_lock_database</source>
+                <target>Die %siteId%-Site wird über den Datenbanktreiber gepflegt.</target>
+            </trans-unit>
         </body>
     </file>
 </xliff>
