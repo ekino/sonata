@@ -36,10 +36,6 @@ class ImmutableTabsType extends ImmutableArrayType
         $resolver->setRequired('tabs');
     }
 
-    /**
-     * @param FormBuilderInterface $builder
-     * @param array                $options
-     */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $tabKeys = $options['keys'];

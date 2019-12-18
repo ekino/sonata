@@ -57,11 +57,6 @@ class PageAdminController extends BasePageAdminController
 
     /**
      * PageAdminController constructor.
-     *
-     * @param BlockFilter              $blockFilter
-     * @param BlockAdmin               $blockAdmin
-     * @param BlockServiceManager      $blockServiceManager
-     * @param TemplateManagerInterface $templateManager
      */
     public function __construct(
         BlockFilter $blockFilter,
@@ -76,12 +71,8 @@ class PageAdminController extends BasePageAdminController
     }
 
     /**
-     * @param Request|null $request
-     *
      * @throws AccessDeniedException
      * @throws NotFoundHttpException
-     *
-     * @return Response
      */
     public function composeContainerShowAction(Request $request = null): Response
     {
@@ -132,10 +123,6 @@ class PageAdminController extends BasePageAdminController
 
     /**
      * Return blocks grouped by categories.
-     *
-     * @param array $blockServices
-     *
-     * @return array
      */
     protected function getBlocksByCategory(array $blockServices): array
     {

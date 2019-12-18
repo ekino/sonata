@@ -41,9 +41,6 @@ final class BlockFilter
 
     /**
      * BlockFilter constructor.
-     *
-     * @param array $categories
-     * @param array $blockConfig
      */
     public function __construct(array $categories = [], array $blockConfig = [])
     {
@@ -55,8 +52,6 @@ final class BlockFilter
 
     /**
      * Return all block categories.
-     *
-     * @return array
      */
     public function getCategories(): array
     {
@@ -108,8 +103,6 @@ final class BlockFilter
     /**
      * Return categories of the given block.
      *
-     * @param string $code
-     *
      * @return string[]
      */
     public function getBlockCategories(string $code): array
@@ -133,8 +126,6 @@ final class BlockFilter
 
     /**
      * @throws \InvalidArgumentException
-     *
-     * @return string|null
      */
     private function getDefaultCategory(): ?string
     {
@@ -146,8 +137,6 @@ final class BlockFilter
     }
 
     /**
-     * @param array $config
-     *
      * @throws \InvalidArgumentException
      */
     private function checkBlockConfig(array $config): void
