@@ -23,8 +23,6 @@ use Symfony\Component\Config\Definition\Processor;
 class ConfigurationTest extends TestCase
 {
     /**
-     * @param array $expected
-     *
      * @dataProvider getConfig
      */
     public function testDefaultConfig(array $expected): void
@@ -35,9 +33,6 @@ class ConfigurationTest extends TestCase
         $this->assertEquals($expected, $config);
     }
 
-    /**
-     * @return \Generator
-     */
     public function getConfig(): \Generator
     {
         yield 'Test default configuration' => [

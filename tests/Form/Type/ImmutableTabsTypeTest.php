@@ -13,7 +13,6 @@ declare(strict_types=1);
 
 namespace Sonata\HelpersBundle\Tests\Form\Type;
 
-use PHPUnit\Framework\MockObject\MockObject;
 use Sonata\CoreBundle\Form\Type\ImmutableArrayType;
 use Sonata\HelpersBundle\Form\Type\ImmutableTabsType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -31,7 +30,6 @@ class ImmutableTabsTypeTest extends TypeTestCase
      */
     public function testBuildForm()
     {
-        /** @var FormBuilderInterface|MockObject $formBuilder */
         $formBuilder = $this->createMock(FormBuilderInterface::class);
         $formBuilder
             ->expects($this->once())

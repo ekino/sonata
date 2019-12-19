@@ -37,11 +37,6 @@ class MonitorBlockService extends AbstractAdminBlockService
 
     /**
      * MonitorBlockService constructor.
-     *
-     * @param string          $name
-     * @param EngineInterface $templating
-     * @param PathHelper      $pathHelper
-     * @param string          $liipMonitorDefaultGroup
      */
     public function __construct(
         string $name,

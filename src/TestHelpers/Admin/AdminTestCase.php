@@ -113,8 +113,6 @@ abstract class AdminTestCase extends \PHPUnit\Framework\TestCase
     /**
      * Create mocks of all admin default services
      * and assign them to a property of the class.
-     *
-     * @param AdminInterface $admin
      */
     protected function mockDefaultServices(AdminInterface $admin)
     {
@@ -145,9 +143,6 @@ abstract class AdminTestCase extends \PHPUnit\Framework\TestCase
 
     /**
      * Use this function to instantiate all default services as mocks in the Admin.
-     *
-     * @param AdminInterface $admin
-     * @param array          $defaultServices
      */
     private function applyDefaults(AdminInterface $admin, array $defaultServices)
     {

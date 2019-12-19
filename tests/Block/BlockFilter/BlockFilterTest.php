@@ -50,8 +50,6 @@ class BlockFilterTest extends TestCase
 
     /**
      * @dataProvider getCategoriesDataProvider
-     *
-     * @param array $categories
      */
     public function testGetCategories(array $categories): void
     {
@@ -59,9 +57,6 @@ class BlockFilterTest extends TestCase
         $this->assertEquals($categories, $blockFilter->getCategories());
     }
 
-    /**
-     * @return \Generator
-     */
     public function getCategoriesDataProvider(): \Generator
     {
         yield 'Empty' => [[]];
@@ -71,11 +66,6 @@ class BlockFilterTest extends TestCase
 
     /**
      * @dataProvider filterDataProvider
-     *
-     * @param array $expected
-     * @param array $categories
-     * @param array $blockConfig
-     * @param array $blocks
      */
     public function testFilter(array $expected, array $categories, array $blockConfig, array $blocks): void
     {
@@ -84,9 +74,6 @@ class BlockFilterTest extends TestCase
         $this->assertEquals($expected, $blockFilter->filter($blocks, $this->page));
     }
 
-    /**
-     * @return \Generator
-     */
     public function filterDataProvider(): \Generator
     {
         $defaultCategories  = ['foo' => 'Foo', 'bar' => 'Bar'];
@@ -114,11 +101,6 @@ class BlockFilterTest extends TestCase
 
     /**
      * @dataProvider getBlockCategoriesDataProvider
-     *
-     * @param array  $expected
-     * @param string $code
-     * @param array  $categories
-     * @param array  $blockConfig
      */
     public function testGetBlockCategories(array $expected, string $code, array $categories, array $blockConfig): void
     {
@@ -127,9 +109,6 @@ class BlockFilterTest extends TestCase
         $this->assertEquals($expected, $blockFilter->getBlockCategories($code));
     }
 
-    /**
-     * @return \Generator
-     */
     public function getBlockCategoriesDataProvider(): \Generator
     {
         $defaultCategories  = ['' => 'Default', 'foo' => 'Foo', 'bar' => 'Bar'];

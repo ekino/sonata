@@ -25,8 +25,6 @@ use Symfony\Component\Form\FormBuilderInterface;
 trait AdminFormFieldTestTrait
 {
     /**
-     * @param AdminInterface $admin
-     *
      * @return FormMapper|\PHPUnit_Framework_MockObject_MockObject|FormMapper
      */
     protected function mockFormMapper(AdminInterface $admin)

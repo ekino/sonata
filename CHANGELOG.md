@@ -4,6 +4,9 @@ CHANGELOG
 master
 ------
 
+* Update friendsofphp/php-cs-fixer 
+* Remove namespaces MockObject in tests files
+
 v0.0.1
 ------
 

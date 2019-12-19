@@ -26,10 +26,8 @@ trait MockBuilderTrait
 {
     /**
      * Create TranslatorInterfaceMock and add a callback method to it.
-     *
-     * @return TranslatorInterface|MockObject
      */
-    protected function mockTranslator()
+    protected function mockTranslator(): MockObject
     {
         $translator = $this->createMock(TranslatorInterface::class);
         $translator->expects($this->any())->method('trans')
