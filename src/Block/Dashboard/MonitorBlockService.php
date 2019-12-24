@@ -13,17 +13,17 @@ namespace Sonata\HelpersBundle\Block\Dashboard;
 
 use Liip\MonitorBundle\Helper\PathHelper;
 use Sonata\BlockBundle\Block\BlockContextInterface;
-use Sonata\BlockBundle\Block\Service\AbstractAdminBlockService;
-use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Sonata\BlockBundle\Block\Service\AbstractBlockService;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Twig\Environment;
 
 /**
  * Class MonitorBlockService.
  *
  * @author Quentin Belot <quentin.belot@ekino.com>
  */
-class MonitorBlockService extends AbstractAdminBlockService
+class MonitorBlockService extends AbstractBlockService
 {
     /**
      * @var PathHelper
@@ -39,12 +39,11 @@ class MonitorBlockService extends AbstractAdminBlockService
      * MonitorBlockService constructor.
      */
     public function __construct(
-        string $name,
-        EngineInterface $templating,
+        Environment $twig,
         PathHelper $pathHelper,
         string $liipMonitorDefaultGroup
     ) {
-        parent::__construct($name, $templating);
+        parent::__construct($twig);
 
         $this->pathHelper              = $pathHelper;
         $this->liipMonitorDefaultGroup = $liipMonitorDefaultGroup;
