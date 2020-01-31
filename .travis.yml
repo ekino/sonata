@@ -49,8 +49,6 @@ matrix:
   allow_failures:
     - php: nightly
     - php: '7.4'
-    - php: '7.3'
-    - env: SYMFONY_DEPRECATIONS_HELPER=0
 
 before_install:
   - git remote add upstream ${UPSTREAM_URL} && git fetch --all
