@@ -10,6 +10,7 @@ master
 * CI: add php version 7.4
 * CI: change symfony version from 4.2 to 4.4
 * CI: add php version 7.4 at nightly
+* Upgrade symfony/framework-bundle version to fix security issue
 
 v0.0.1
 ------
