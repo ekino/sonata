@@ -125,9 +125,9 @@ class BlockFilterTest extends TestCase
         ];
 
         yield 'Everything empty' => [[0 => null], '', ['' => 'Default'], []];
-        yield 'Default' => [[0 => 'foo', 1 => 'bar'], 'Bravo', $defaultCategories, $defaultBlockConfig];
-        yield 'Default' => [[0 => 'bar'], 'Delta', $defaultCategories, $defaultBlockConfig];
-        yield 'Default' => [[0 => null], 'Alpha', $defaultCategories, $defaultBlockConfig];
+        yield 'Default Bravo' => [[0 => 'foo', 1 => 'bar'], 'Bravo', $defaultCategories, $defaultBlockConfig];
+        yield 'Default Delta' => [[0 => 'bar'], 'Delta', $defaultCategories, $defaultBlockConfig];
+        yield 'Default Alpha' => [[0 => null], 'Alpha', $defaultCategories, $defaultBlockConfig];
     }
 
     /**

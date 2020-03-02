@@ -15,6 +15,7 @@ namespace Sonata\HelpersBundle\TestHelpers\Admin;
 
 use Doctrine\Common\Inflector\Inflector;
 use Knp\Menu\FactoryInterface;
+use PHPUnit\Framework\MockObject\MockObject;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Admin\Pool;
 use Sonata\AdminBundle\Builder\DatagridBuilderInterface;
@@ -37,67 +38,67 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 abstract class AdminTestCase extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @var ModelManager|\PHPUnit_Framework_MockObject_MockObject
+     * @var ModelManager|MockObject
      */
     protected $modelManagerMock;
 
     /**
-     * @var FormContractorInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var FormContractorInterface|MockObject
      */
     protected $formContractorMock;
 
     /**
-     * @var ShowBuilderInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var ShowBuilderInterface|MockObject
      */
     protected $showBuilderMock;
 
     /**
-     * @var ListBuilderInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var ListBuilderInterface|MockObject
      */
     protected $listBuilderMock;
 
     /**
-     * @var DatagridBuilderInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var DatagridBuilderInterface|MockObject
      */
     protected $datagridBuilderMock;
 
     /**
-     * @var TranslatorInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var TranslatorInterface|MockObject
      */
     protected $translatorMock;
 
     /**
-     * @var Pool|\PHPUnit_Framework_MockObject_MockObject
+     * @var Pool|MockObject
      */
     protected $poolMock;
 
     /**
-     * @var RouteGeneratorInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var RouteGeneratorInterface|MockObject
      */
     protected $routeGeneratorMock;
 
     /**
-     * @var ValidatorInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var ValidatorInterface|MockObject
      */
     protected $validatorMock;
 
     /**
-     * @var SecurityHandlerInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var SecurityHandlerInterface|MockObject
      */
     protected $securityHandlerMock;
 
     /**
-     * @var FactoryInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var FactoryInterface|MockObject
      */
     protected $menuFactoryMock;
 
     /**
-     * @var RouteBuilderInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var RouteBuilderInterface|MockObject
      */
     protected $routeBuilderMock;
 
     /**
-     * @var LabelTranslatorStrategyInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var LabelTranslatorStrategyInterface|MockObject
      */
     protected $labelTranslatorStrategyMock;
 
