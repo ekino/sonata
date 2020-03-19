@@ -8,3 +8,6 @@ parameters:
 		- %rootDir%/../../../vendor/*
 
 		- %rootDir%/../../../src/DependencyInjection/Configuration.php
+
+		- %rootDir%/../../../src/Drivers/*
+		- %rootDir%/../../../tests/Drivers/*
