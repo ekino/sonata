@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\HelpersBundle\Form\Type;
 
-use Sonata\CoreBundle\Form\Type\ImmutableArrayType;
+use Sonata\Form\Type\ImmutableArrayType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;

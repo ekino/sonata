@@ -17,7 +17,7 @@ use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Form\FormMapper;
 use Sonata\ArticleBundle\Entity\Fragment;
 use Sonata\ArticleBundle\FragmentService\FragmentServiceInterface;
-use Sonata\CoreBundle\Form\Type\ImmutableArrayType;
+use Sonata\Form\Type\ImmutableArrayType;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**

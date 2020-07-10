@@ -13,7 +13,7 @@ declare(strict_types=1);
 
 namespace Sonata\HelpersBundle\Tests\Form\Type;
 
-use Sonata\CoreBundle\Form\Type\ImmutableArrayType;
+use Sonata\Form\Type\ImmutableArrayType;
 use Sonata\HelpersBundle\Form\Type\ImmutableTabsType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Test\TypeTestCase;
