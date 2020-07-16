@@ -22,4 +22,8 @@
         <log type="junit" target="build/phpunit/junit.xml"/>
         <log type="coverage-html" target="build/phpunit/html"/>
     </logging>
+
+    <listeners>
+        <listener class="Sonata\HelpersBundle\Tests\Listener\ByPassFinalListener" file=""></listener>
+    </listeners>
 </phpunit>

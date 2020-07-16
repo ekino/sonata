@@ -24,14 +24,18 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  *
  * @author Benoit de Jacobet <benoit.de-jacobet@ekino.com>
  */
-class ImmutableTabsType extends ImmutableArrayType
+class ImmutableTabsType
 {
-    /**
-     * {@inheritdoc}
-     */
+    private $immutableArrayType;
+
+    public function __construct(ImmutableArrayType $immutableArrayType)
+    {
+        $this->immutableArrayType = $immutableArrayType;
+    }
+
     public function configureOptions(OptionsResolver $resolver)
     {
-        parent::configureOptions($resolver);
+        $this->immutableArrayType->configureOptions($resolver);
 
         $resolver->setRequired('tabs');
     }
@@ -49,25 +53,16 @@ class ImmutableTabsType extends ImmutableArrayType
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['tabs'] = $options['tabs'];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
         return $this->getBlockPrefix();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getBlockPrefix()
     {
         return 'sonata_immutable_tabs_type';

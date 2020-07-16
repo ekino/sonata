@@ -30,7 +30,8 @@ class ImmutableTabsTypeTest extends TypeTestCase
      */
     public function testBuildForm()
     {
-        $formBuilder = $this->createMock(FormBuilderInterface::class);
+        $formBuilder            = $this->createMock(FormBuilderInterface::class);
+        $immutableArrayTypeMock = $this->createMock(ImmutableArrayType::class);
         $formBuilder
             ->expects($this->once())
             ->method('add')
@@ -49,7 +50,7 @@ class ImmutableTabsTypeTest extends TypeTestCase
                 ]
             );
 
-        $type = new ImmutableTabsType();
+        $type = new ImmutableTabsType($immutableArrayTypeMock);
         $type->buildForm($formBuilder, [
             'keys' => [
                 ['foo', 'fooClass', ['attr' => ['class' => 'bar']]],
@@ -63,7 +64,8 @@ class ImmutableTabsTypeTest extends TypeTestCase
      */
     public function testGetBlockPrefix()
     {
-        $type = new ImmutableTabsType();
+        $immutableArrayTypeMock = $this->createMock(ImmutableArrayType::class);
+        $type                   = new ImmutableTabsType($immutableArrayTypeMock);
         $this->assertSame('sonata_immutable_tabs_type', $type->getBlockPrefix());
     }
 }
