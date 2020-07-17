@@ -14,6 +14,7 @@ declare(strict_types=1);
 namespace Sonata\HelpersBundle\Form\Type;
 
 use Sonata\Form\Type\ImmutableArrayType;
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
@@ -24,20 +25,16 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  *
  * @author Benoit de Jacobet <benoit.de-jacobet@ekino.com>
  */
-class ImmutableTabsType
+class ImmutableTabsType extends AbstractType
 {
-    private $immutableArrayType;
-
-    public function __construct(ImmutableArrayType $immutableArrayType)
-    {
-        $this->immutableArrayType = $immutableArrayType;
-    }
-
     public function configureOptions(OptionsResolver $resolver)
     {
-        $this->immutableArrayType->configureOptions($resolver);
+        $resolver->setAllowedTypes('tabs', 'string[]')->setRequired('tabs');
+    }
 
-        $resolver->setRequired('tabs');
+    public function getParent(): string
+    {
+        return ImmutableArrayType::class;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)

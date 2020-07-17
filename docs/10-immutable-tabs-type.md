@@ -11,7 +11,7 @@ To get tabs into a block of page or admin form.
 
 ## Implementation
 
-It extends the `Sonata\Form\Type\ImmutableArrayType`
+It extends the `Symfony\Component\Form\AbstractType`
 
 And use a specific widget defined in `SonataHelpersBundle/Ressources/views/From/form_admin_fields.html.twig` so you must add it to your admin sonata config
 

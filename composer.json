@@ -21,7 +21,6 @@
     "symfony/framework-bundle": "^3.4 || ^4.4"
   },
   "require-dev": {
-    "dg/bypass-finals": "^1.2",
     "ekino/phpstan-banned-code": "^0.2",
     "friendsofphp/php-cs-fixer": "^2.16",
     "phpstan/phpstan-phpunit": "^0.11",

@@ -11,6 +11,7 @@ master
 * CI: change symfony version from 4.2 to 4.4
 * CI: add php version 7.4 at nightly
 * Upgrade symfony/framework-bundle version to fix security issue
+* Adapted ImmutableTabsType and its test class to new Sonata form component (fixed namespace and inheritance)
 
 v0.0.1
 ------
