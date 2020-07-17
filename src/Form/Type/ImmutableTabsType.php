@@ -13,7 +13,8 @@ declare(strict_types=1);
 
 namespace Sonata\HelpersBundle\Form\Type;
 
-use Sonata\CoreBundle\Form\Type\ImmutableArrayType;
+use Sonata\Form\Type\ImmutableArrayType;
+use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\Form\FormView;
@@ -24,16 +25,16 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  *
  * @author Benoit de Jacobet <benoit.de-jacobet@ekino.com>
  */
-class ImmutableTabsType extends ImmutableArrayType
+class ImmutableTabsType extends AbstractType
 {
-    /**
-     * {@inheritdoc}
-     */
     public function configureOptions(OptionsResolver $resolver)
     {
-        parent::configureOptions($resolver);
+        $resolver->setAllowedTypes('tabs', 'string[]')->setRequired('tabs');
+    }
 
-        $resolver->setRequired('tabs');
+    public function getParent(): string
+    {
+        return ImmutableArrayType::class;
     }
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -49,25 +50,16 @@ class ImmutableTabsType extends ImmutableArrayType
         }
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function buildView(FormView $view, FormInterface $form, array $options)
     {
         $view->vars['tabs'] = $options['tabs'];
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getName()
     {
         return $this->getBlockPrefix();
     }
 
-    /**
-     * {@inheritdoc}
-     */
     public function getBlockPrefix()
     {
         return 'sonata_immutable_tabs_type';
