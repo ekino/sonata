@@ -90,7 +90,6 @@ class PageAdminController extends BasePageAdminController
         $blockServices = $this->blockServiceManager->getServicesByContext('sonata_page_bundle', false);
 
         // Filter service using the template configuration
-        /** @var Page $page */
         if ($page = $block->getPage()) {
             $template  = $this->templateManager->get($page->getTemplateCode());
             $container = $template->getContainer($block->getSetting('code'));
