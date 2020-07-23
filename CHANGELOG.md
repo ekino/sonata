@@ -4,6 +4,9 @@ CHANGELOG
 master
 ------
 
+v0.2.0
+------
+
 * Update friendsofphp/php-cs-fixer 
 * Remove namespaces MockObject in tests files
 * CI: remove php version 7.1
@@ -13,6 +16,7 @@ master
 * Upgrade symfony/framework-bundle version to fix security issue
 * Adapted ImmutableTabsType and its test class to new Sonata form component (fixed namespace and inheritance)
 * Upgraded ekino/phpstan-banned-code to 0.3 and upgraded its dependencies
+* Dropped support for Symfony 3.x in favor of 4.x+
 
 v0.0.1
 ------
