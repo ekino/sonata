@@ -4,6 +4,8 @@ CHANGELOG
 master
 ------
 
+* Required PHP version is now 7.2, breaking no dependency from 0.2.0
+
 v0.2.0
 ------
 
