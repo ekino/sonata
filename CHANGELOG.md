@@ -4,6 +4,8 @@ CHANGELOG
 master
 ------
 
+* Switch to the new security checker
+
 v0.2.0
 ------
 

@@ -1,6 +1,8 @@
 #!/usr/bin/env sh
 set -ev
 
+export COMPOSER_MEMORY_LIMIT=-1
+
 mkdir --parents "${HOME}/bin"
 
 # Coveralls client install
