@@ -5,6 +5,7 @@ master
 ------
 
 * Switch to the new security checker
+* Migrate from Travis to GitHub Actions
 
 v0.2.0
 ------
