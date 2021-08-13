@@ -19,6 +19,6 @@ jobs:
         with:
           php-version: ${{ matrix.php }}
           tools: composer
-          ini-values: php_memory_limit=3072M
+
       - run: make app-install
       - run: make ci
