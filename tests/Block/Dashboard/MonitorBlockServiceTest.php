@@ -14,10 +14,10 @@ namespace Sonata\HelpersBundle\Tests\Block\Dashboard;
 use Liip\MonitorBundle\Helper\PathHelper;
 use PHPUnit\Framework\TestCase;
 use Sonata\BlockBundle\Block\BlockContext;
-use Sonata\BlockBundle\Test\FakeTemplating;
 use Sonata\HelpersBundle\Block\Dashboard\MonitorBlockService;
 use Sonata\PageBundle\Entity\BaseBlock;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Twig\Environment;
 
 /**
  * Class MonitorBlockServiceTest.
@@ -27,25 +27,13 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 class MonitorBlockServiceTest extends TestCase
 {
     /**
-     * Test Get Name.
-     */
-    public function testGetName(): void
-    {
-        $pathHelper = $this->createMock(PathHelper::class);
-        $templating = new FakeTemplating();
-        $block      = new MonitorBlockService(MonitorBlockService::class, $templating, $pathHelper, 'defaultGroup');
-
-        $this->assertSame(MonitorBlockService::class, $block->getName());
-    }
-
-    /**
      * Test Execute.
      */
     public function testExecute(): void
     {
         $pathHelper     = $this->createMock(PathHelper::class);
-        $templating     = new FakeTemplating();
-        $service        = new MonitorBlockService(MonitorBlockService::class, $templating, $pathHelper, 'defaultGroup');
+        $templating     = $this->createMock(Environment::class);
+        $service        = new MonitorBlockService($templating, $pathHelper, 'defaultGroup');
         $block          = new Block();
         $optionResolver = new OptionsResolver();
 
