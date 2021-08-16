@@ -7,6 +7,7 @@ master
 * Switch to the new security checker
 * Migrate from Travis to GitHub Actions
 * Fix deprecated PHP-CS rules
+* Fix deprecations triggered by SonataBlockBundle
 
 v0.2.0
 ------
