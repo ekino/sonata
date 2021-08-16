@@ -8,6 +8,7 @@ master
 * Migrate from Travis to GitHub Actions
 * Fix deprecated PHP-CS rules
 * Fix deprecations triggered by SonataBlockBundle
+* Upgrade friendsofphp/php-cs-fixer
 
 v0.2.0
 ------
