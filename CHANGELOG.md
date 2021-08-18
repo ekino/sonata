@@ -9,6 +9,7 @@ master
 * Fix deprecated PHP-CS rules
 * Fix deprecations triggered by SonataBlockBundle
 * Upgrade friendsofphp/php-cs-fixer
+* Improve PHPStan configuration file
 
 v0.2.0
 ------
