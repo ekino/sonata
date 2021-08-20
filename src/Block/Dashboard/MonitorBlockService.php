@@ -51,7 +51,7 @@ class MonitorBlockService extends AbstractBlockService
     /**
      * {@inheritdoc}
      */
-    public function configureSettings(OptionsResolver $resolver)
+    public function configureSettings(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
             'template' => '@SonataHelpers/Block/dashboard/monitor.html.twig',
@@ -61,19 +61,21 @@ class MonitorBlockService extends AbstractBlockService
     /**
      * {@inheritdoc}
      */
-    public function execute(BlockContextInterface $blockContext, Response $response = null)
+    public function execute(BlockContextInterface $blockContext, Response $response = null): Response
     {
+        /** @var string $urls */
         $urls = $this->pathHelper->getRoutesJs([
             'liip_monitor_run_all_checks'   => ['group' => $this->liipMonitorDefaultGroup],
             'liip_monitor_run_single_check' => ['checkId' => 'replaceme', 'group' => $this->liipMonitorDefaultGroup],
         ]);
 
+        /** @var string $javascripts */
         $javascripts = $this->pathHelper->getScriptTags([
             'bundles/liipmonitor/javascript/ember-0.9.5.min.js',
             'bundles/liipmonitor/javascript/app.js',
         ]);
 
-        return $this->renderResponse($blockContext->getTemplate(), [
+        return $this->renderResponse((string) $blockContext->getTemplate(), [
             'settings'    => $blockContext->getSettings(),
             'urls'        => $urls,
             'javascripts' => $javascripts,

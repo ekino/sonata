@@ -106,6 +106,9 @@ class SonataHelpersExtensionTest extends TestCase
      * Assert prepend sonata helpers configuration with sonata media one.
      *
      * @dataProvider prependDataProvider
+     *
+     * @param string[] $sonataMediaConfig
+     * @param string[] $expected
      */
     public function testPrepend(array $sonataMediaConfig, array $expected): void
     {
@@ -123,6 +126,9 @@ class SonataHelpersExtensionTest extends TestCase
         $this->extension->prepend($container);
     }
 
+    /**
+     * @return \Generator<array>
+     */
     public function prependDataProvider(): \Generator
     {
         yield 'With providers' => [

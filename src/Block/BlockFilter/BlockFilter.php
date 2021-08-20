@@ -25,12 +25,12 @@ use Sonata\PageBundle\Model\PageInterface;
 final class BlockFilter
 {
     /**
-     * @var array
+     * @var array<non-empty-array>
      */
     private $blockConfig;
 
     /**
-     * @var array
+     * @var array<non-empty-array>
      */
     private $categories;
 
@@ -41,6 +41,9 @@ final class BlockFilter
 
     /**
      * BlockFilter constructor.
+     *
+     * @param array<non-empty-array> $categories
+     * @param array<non-empty-array> $blockConfig
      */
     public function __construct(array $categories = [], array $blockConfig = [])
     {
@@ -52,6 +55,8 @@ final class BlockFilter
 
     /**
      * Return all block categories.
+     *
+     * @return array<non-empty-array|null>
      */
     public function getCategories(): array
     {
@@ -61,10 +66,10 @@ final class BlockFilter
     /**
      * Filter the given block list according to the page.
      *
-     * @param array         $blocks Initial blocks
-     * @param PageInterface $page   Page on which blocks should be filtered
+     * @param array<non-empty-array> $blocks Initial blocks
+     * @param PageInterface          $page   Page on which blocks should be filtered
      *
-     * @return array Filtered blocks
+     * @return array<non-empty-array> Filtered blocks
      */
     public function filter(array $blocks, PageInterface $page): array
     {
@@ -103,7 +108,7 @@ final class BlockFilter
     /**
      * Return categories of the given block.
      *
-     * @return string[]
+     * @return array<string|null>
      */
     public function getBlockCategories(string $code): array
     {
@@ -137,6 +142,8 @@ final class BlockFilter
     }
 
     /**
+     * @param array<non-empty-array> $config
+     *
      * @throws \InvalidArgumentException
      */
     private function checkBlockConfig(array $config): void
