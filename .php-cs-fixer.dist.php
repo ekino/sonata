@@ -40,6 +40,7 @@ return $config->setRules([
         'header' => $header
     ],
     'linebreak_after_opening_tag' => true,
+    'native_function_invocation' => ['include' => ['@compiler_optimized']],
     'no_extra_blank_lines' => [
         'tokens' => [
             'break',
