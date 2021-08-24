@@ -14,11 +14,12 @@ declare(strict_types=1);
 namespace Sonata\HelpersBundle\Controller;
 
 use Sonata\BlockBundle\Block\BlockServiceManager;
-use Sonata\BlockBundle\Model\Block;
+use Sonata\BlockBundle\Block\Service\BlockServiceInterface;
 use Sonata\HelpersBundle\Block\BlockFilter\BlockFilter;
 use Sonata\PageBundle\Admin\BlockAdmin;
 use Sonata\PageBundle\Controller\PageAdminController as BasePageAdminController;
-use Sonata\PageBundle\Model\Page;
+use Sonata\PageBundle\Model\Block;
+use Sonata\PageBundle\Model\Template;
 use Sonata\PageBundle\Page\TemplateManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -74,38 +75,48 @@ class PageAdminController extends BasePageAdminController
      * @throws AccessDeniedException
      * @throws NotFoundHttpException
      */
-    public function composeContainerShowAction(Request $request = null): Response
+    public function composeContainerShowAction(?Request $request = null): Response
     {
         if (false === $this->blockAdmin->isGranted('LIST')) {
             throw new AccessDeniedException();
         }
 
+        if (null == $request) {
+            $request = $this->getRequest();
+        }
+
         $id    = $request->attributes->get($this->admin->getIdParameter());
         $block = $this->blockAdmin->getObject($id);
 
-        if (!$block) {
+        if (!$block instanceof Block) {
             throw new NotFoundHttpException(sprintf('Unable to find the block with id : %s', $id));
         }
 
         $blockServices = $this->blockServiceManager->getServicesByContext('sonata_page_bundle', false);
+        $page          = $block->getPage();
 
         // Filter service using the template configuration
-        if ($page = $block->getPage()) {
-            $template  = $this->templateManager->get($page->getTemplateCode());
-            $container = $template->getContainer($block->getSetting('code'));
+        if (null !== $page) {
+            $page = $block->getPage();
+            if (null !== $page->getTemplateCode()) {
+                $template  = $this->templateManager->get($page->getTemplateCode());
+                if ($template instanceof Template) {
+                    $container = $template->getContainer($block->getSetting('code'));
 
-            if (isset($container['blocks']) && \count($container['blocks']) > 0) {
-                foreach ($blockServices as $code => $service) {
-                    if (\in_array($code, $container['blocks'])) {
-                        continue;
+                    if (isset($container['blocks']) && \count($container['blocks']) > 0) {
+                        foreach ($blockServices as $code => $service) {
+                            if (\in_array($code, $container['blocks'])) {
+                                continue;
+                            }
+
+                            unset($blockServices[$code]);
+                        }
                     }
 
-                    unset($blockServices[$code]);
+                    // We're filtering remaining block services according to page
+                    $blockServices = $this->blockFilter->filter($blockServices, $page);
                 }
             }
-
-            // We're filtering remaining block services according to page
-            $blockServices = $this->blockFilter->filter($blockServices, $page);
         }
 
         $blocksByCategory = $this->getBlocksByCategory($blockServices);
@@ -122,6 +133,10 @@ class PageAdminController extends BasePageAdminController
 
     /**
      * Return blocks grouped by categories.
+     *
+     * @param array<BlockServiceInterface> $blockServices
+     *
+     * @return array<array-key, BlockServiceInterface[]>
      */
     protected function getBlocksByCategory(array $blockServices): array
     {

@@ -13,8 +13,11 @@ declare(strict_types=1);
 
 namespace Sonata\HelpersBundle\TestHelpers\Admin;
 
-use Doctrine\Common\Inflector\Inflector;
+use Doctrine\Inflector\Inflector;
+use Doctrine\Inflector\WordInflector;
 use Knp\Menu\FactoryInterface;
+use PHPUnit\Framework\MockObject\MockObject;
+use PHPUnit\Framework\TestCase;
 use Sonata\AdminBundle\Admin\AdminInterface;
 use Sonata\AdminBundle\Admin\Pool;
 use Sonata\AdminBundle\Builder\DatagridBuilderInterface;
@@ -26,78 +29,78 @@ use Sonata\AdminBundle\Route\RouteGeneratorInterface;
 use Sonata\AdminBundle\Security\Handler\SecurityHandlerInterface;
 use Sonata\AdminBundle\Translator\LabelTranslatorStrategyInterface;
 use Sonata\DoctrineORMAdminBundle\Model\ModelManager;
-use Symfony\Component\Translation\TranslatorInterface;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 /**
  * Class AdminTestCase.
  *
  * @author Sylvain Rascar <sylvain.rascar@ekino.com>
  */
-abstract class AdminTestCase extends \PHPUnit\Framework\TestCase
+abstract class AdminTestCase extends TestCase
 {
     /**
-     * @var ModelManager|\PHPUnit_Framework_MockObject_MockObject
+     * @var MockObject
      */
     protected $modelManagerMock;
 
     /**
-     * @var FormContractorInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var MockObject
      */
     protected $formContractorMock;
 
     /**
-     * @var ShowBuilderInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var MockObject
      */
     protected $showBuilderMock;
 
     /**
-     * @var ListBuilderInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var MockObject
      */
     protected $listBuilderMock;
 
     /**
-     * @var DatagridBuilderInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var MockObject
      */
     protected $datagridBuilderMock;
 
     /**
-     * @var TranslatorInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var MockObject
      */
     protected $translatorMock;
 
     /**
-     * @var Pool|\PHPUnit_Framework_MockObject_MockObject
+     * @var MockObject
      */
     protected $poolMock;
 
     /**
-     * @var RouteGeneratorInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var MockObject
      */
     protected $routeGeneratorMock;
 
     /**
-     * @var ValidatorInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var MockObject
      */
     protected $validatorMock;
 
     /**
-     * @var SecurityHandlerInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var MockObject
      */
     protected $securityHandlerMock;
 
     /**
-     * @var FactoryInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var MockObject
      */
     protected $menuFactoryMock;
 
     /**
-     * @var RouteBuilderInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var MockObject
      */
     protected $routeBuilderMock;
 
     /**
-     * @var LabelTranslatorStrategyInterface|\PHPUnit_Framework_MockObject_MockObject
+     * @var MockObject
      */
     protected $labelTranslatorStrategyMock;
 
@@ -108,13 +111,16 @@ abstract class AdminTestCase extends \PHPUnit\Framework\TestCase
      */
     protected $dummyAdminId    = 'sonata.admin';
 
+    /**
+     * @var string
+     */
     protected $dummyController = 'SonataAdminBundle:CRUD';
 
     /**
      * Create mocks of all admin default services
      * and assign them to a property of the class.
      */
-    protected function mockDefaultServices(AdminInterface $admin)
+    protected function mockDefaultServices(AdminInterface $admin): void
     {
         // Each element is composed of: original_service_key, propertyName, class
         $defaultServices = [
@@ -143,12 +149,15 @@ abstract class AdminTestCase extends \PHPUnit\Framework\TestCase
 
     /**
      * Use this function to instantiate all default services as mocks in the Admin.
+     *
+     * @param array<array-key,array> $defaultServices
      */
-    private function applyDefaults(AdminInterface $admin, array $defaultServices)
+    private function applyDefaults(AdminInterface $admin, array $defaultServices): void
     {
+        $inflector = new Inflector($this->createMock(WordInflector::class), $this->createMock(WordInflector::class));
         // Add services to the admin
         foreach ($defaultServices as $service) {
-            $method = 'set'.Inflector::classify($service[0]);
+            $method = 'set'.$inflector->classify($service[0]);
             $admin->{$method}($this->{$service[1]});
         }
     }

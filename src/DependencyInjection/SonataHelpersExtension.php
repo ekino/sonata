@@ -29,8 +29,10 @@ class SonataHelpersExtension extends Extension implements PrependExtensionInterf
 {
     /**
      * {@inheritdoc}
+     *
+     * @param array<array-key,array> $configs
      */
-    public function load(array $configs, ContainerBuilder $container)
+    public function load(array $configs, ContainerBuilder $container): void
     {
         $configuration = new Configuration();
         $config        = $this->processConfiguration($configuration, $configs);
@@ -44,7 +46,7 @@ class SonataHelpersExtension extends Extension implements PrependExtensionInterf
     /**
      * {@inheritdoc}
      */
-    public function prepend(ContainerBuilder $container)
+    public function prepend(ContainerBuilder $container): void
     {
         $config            = $container->getExtensionConfig($this->getAlias())[0];
         $sonataMediaConfig = $container->getExtensionConfig('sonata_media')[0];
@@ -60,6 +62,9 @@ class SonataHelpersExtension extends Extension implements PrependExtensionInterf
         $container->prependExtensionConfig('sonata_helpers', $config);
     }
 
+    /**
+     * @param array<array-key,string> $config
+     */
     private function configureSonataMediaPrivateFileProvider(array $config, ContainerBuilder $container): void
     {
         $container
@@ -73,6 +78,9 @@ class SonataHelpersExtension extends Extension implements PrependExtensionInterf
             ->replaceArgument(6, $config['allowed_mime_types']);
     }
 
+    /**
+     * @param array<array-key,string> $config
+     */
     private function configureSonataAddBlockDialog(array $config, ContainerBuilder $container): void
     {
         if (!$config['enabled']) {

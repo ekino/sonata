@@ -27,7 +27,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
  */
 class ImmutableTabsType extends AbstractType
 {
-    public function configureOptions(OptionsResolver $resolver)
+    public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setAllowedTypes('tabs', 'string[]')->setRequired('tabs');
     }
@@ -37,7 +37,10 @@ class ImmutableTabsType extends AbstractType
         return ImmutableArrayType::class;
     }
 
-    public function buildForm(FormBuilderInterface $builder, array $options)
+    /**
+     * @param array<non-empty-array> $options
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $tabKeys = $options['keys'];
 
@@ -50,17 +53,21 @@ class ImmutableTabsType extends AbstractType
         }
     }
 
-    public function buildView(FormView $view, FormInterface $form, array $options)
+    /**
+     * @param FormInterface<array>   $form
+     * @param array<non-empty-array> $options
+     */
+    public function buildView(FormView $view, FormInterface $form, array $options): void
     {
         $view->vars['tabs'] = $options['tabs'];
     }
 
-    public function getName()
+    public function getName(): string
     {
         return $this->getBlockPrefix();
     }
 
-    public function getBlockPrefix()
+    public function getBlockPrefix(): string
     {
         return 'sonata_immutable_tabs_type';
     }

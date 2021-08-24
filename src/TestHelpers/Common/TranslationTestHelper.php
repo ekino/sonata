@@ -21,9 +21,9 @@ namespace Sonata\HelpersBundle\TestHelpers\Common;
 class TranslationTestHelper
 {
     /**
-     * @param string $key
-     * @param array  $params
-     * @param string $domain
+     * @param string   $key
+     * @param string[] $params
+     * @param string   $domain
      *
      * @return string
      */

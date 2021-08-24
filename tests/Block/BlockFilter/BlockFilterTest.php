@@ -50,6 +50,8 @@ class BlockFilterTest extends TestCase
 
     /**
      * @dataProvider getCategoriesDataProvider
+     *
+     * @param array<non-empty-array> $categories
      */
     public function testGetCategories(array $categories): void
     {
@@ -57,6 +59,9 @@ class BlockFilterTest extends TestCase
         $this->assertEquals($categories, $blockFilter->getCategories());
     }
 
+    /**
+     * @return \Generator<non-empty-array>
+     */
     public function getCategoriesDataProvider(): \Generator
     {
         yield 'Empty' => [[]];
@@ -66,6 +71,11 @@ class BlockFilterTest extends TestCase
 
     /**
      * @dataProvider filterDataProvider
+     *
+     * @param string[]               $expected
+     * @param array<non-empty-array> $categories
+     * @param array<non-empty-array> $blockConfig
+     * @param array<non-empty-array> $blocks
      */
     public function testFilter(array $expected, array $categories, array $blockConfig, array $blocks): void
     {
@@ -74,6 +84,9 @@ class BlockFilterTest extends TestCase
         $this->assertEquals($expected, $blockFilter->filter($blocks, $this->page));
     }
 
+    /**
+     * @return \Generator<non-empty-array>
+     */
     public function filterDataProvider(): \Generator
     {
         $defaultCategories  = ['foo' => 'Foo', 'bar' => 'Bar'];
@@ -101,6 +114,10 @@ class BlockFilterTest extends TestCase
 
     /**
      * @dataProvider getBlockCategoriesDataProvider
+     *
+     * @param string[]               $expected
+     * @param array<non-empty-array> $categories
+     * @param array<non-empty-array> $blockConfig
      */
     public function testGetBlockCategories(array $expected, string $code, array $categories, array $blockConfig): void
     {
@@ -109,6 +126,9 @@ class BlockFilterTest extends TestCase
         $this->assertEquals($expected, $blockFilter->getBlockCategories($code));
     }
 
+    /**
+     * @return \Generator<non-empty-array>
+     */
     public function getBlockCategoriesDataProvider(): \Generator
     {
         $defaultCategories  = ['' => 'Default', 'foo' => 'Foo', 'bar' => 'Bar'];

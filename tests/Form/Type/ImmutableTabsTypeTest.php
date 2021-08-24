@@ -28,7 +28,7 @@ class ImmutableTabsTypeTest extends TypeTestCase
     /**
      * Test testBuildForm.
      */
-    public function testBuildForm()
+    public function testBuildForm(): void
     {
         $formBuilder = $this->createMock(FormBuilderInterface::class);
         $formBuilder
@@ -61,7 +61,7 @@ class ImmutableTabsTypeTest extends TypeTestCase
     /**
      * Test getBlockPrefix.
      */
-    public function testGetBlockPrefix()
+    public function testGetBlockPrefix(): void
     {
         $type = new ImmutableTabsType();
         $this->assertSame('sonata_immutable_tabs_type', $type->getBlockPrefix());
