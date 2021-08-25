@@ -11,6 +11,7 @@ master
 * Upgrade friendsofphp/php-cs-fixer
 * Improve PHPStan configuration file
 * Raised to PHPStan level 8
+* Add native_function_invocation rule into php-cs-fixer config file
 
 v0.2.0
 ------
